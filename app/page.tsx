@@ -1,65 +1,125 @@
+"use client"
 import Image from "next/image";
 
+import { useState } from "react";
+
+import Header from "@cloudscape-design/components/header";
+import Container from "@cloudscape-design/components/container";
+import SpaceBetween from "@cloudscape-design/components/space-between";
+import Input from "@cloudscape-design/components/input";
+import Button from "@cloudscape-design/components/button";
+import TopNavigation from "@cloudscape-design/components/top-navigation";
+
+import '@cloudscape-design/global-styles/index.css';
+
+
+
 export default function Home() {
+
+  const [value, setValue] = useState("");
+
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <main>
+      <TopNavigation
+      identity={{
+        href: "#",
+        title: "Mike Diamond Plumbing",
+        logo: {
+          src: "https://mikediamondservices.com/wp-content/uploads/2025/07/cropped-Group-36240@2x-32x32.png",
+          alt: "Mike Diamond Plumbing"
+        }
+      }}
+        utilities={[
+          {
+            type: "button",
+            text: "Link",
+            href: "https://mikediamondservices.com/",
+            external: true,
+            externalIconAriaLabel: " (opens in a new tab)"
+          },
+          {
+            type: "button",
+            iconName: "notification",
+            title: "Notifications",
+            ariaLabel: "Notifications (unread)",
+            badge: true,
+            disableUtilityCollapse: false
+          },
+          {
+            type: "menu-dropdown",
+            iconName: "settings",
+            ariaLabel: "Settings",
+            title: "Settings",
+            items: [
+              {
+                id: "settings-org",
+                text: "Organizational settings"
+              },
+              {
+                id: "settings-project",
+                text: "Project settings"
+              }
+            ]
+          },
+          {
+            type: "menu-dropdown",
+            text: "Navigation 1",
+            items: [
+              {id: "sub-nav-1", text: "sub-nav-1", href: "https://mikediamondservices.com/"}
+            ]
+          },
+          {
+            type: "menu-dropdown",
+            text: "Customer Name",
+            description: "email@example.com",
+            iconName: "user-profile",
+            items: [
+              { id: "profile", text: "Profile" },
+              { id: "preferences", text: "Preferences" },
+              { id: "security", text: "Security" },
+              {
+                id: "support-group",
+                text: "Support",
+                items: [
+                  {
+                    id: "documentation",
+                    text: "Documentation",
+                    href: "#",
+                    external: true,
+                    externalIconAriaLabel:
+                      " (opens in new tab)"
+                  },
+                  { id: "support", text: "Support" },
+                  {
+                    id: "feedback",
+                    text: "Feedback",
+                    href: "#",
+                    external: true,
+                    externalIconAriaLabel:
+                      " (opens in new tab)"
+                  }
+                ]
+              },
+              { id: "signout", text: "Sign out" }
+            ]
+          }
+      ]}
+      />
+      <SpaceBetween size="m">
+        <Header variant="h1">Hello World!</Header>
+
+        <Container>
+          <SpaceBetween size="s">
+            <span>Start editing to see some magic happen</span>
+            <Input
+              value={value}
+              onChange={(event:any ) => setValue(event.detail.value)}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <Button variant="primary" className = 'text-black-400'>Click me</Button>
+          </SpaceBetween>
+        </Container>
+      </SpaceBetween>
+    </main>
   );
 }
